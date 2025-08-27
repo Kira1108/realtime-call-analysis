@@ -4,10 +4,20 @@ Real-time Mandarin speech recognition system integrated with live analysis capab
 
 ## Project Overview
 
+Apply a tencent realtime asr account, put the information in `asr.py`
+```python
+BASE_URL = "wss://asr.cloud.tencent.com/asr/v2/yourappid?"
+PART_URL = "asr.cloud.tencent.com/asr/v2/yourappid?"
+SECRET_KEY = "your secret key"
+SECRET_ID = "your secret id"
+```
+
 Run with
 ```bash
 python workflow.py
 ```
+
+> 启动以后，两个人对着麦克风说话，一个人模仿报案者，另一个人扮演接听电话的警察。当前能收集的消息有：报警人姓名，地点，案件类型，案件描述
 
 This project implements a real-time speech recognition and analysis system with the following components:
 
