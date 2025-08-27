@@ -26,7 +26,7 @@ and the previously generated json schema.
 Your task is generate detailed information as complete as possible.
 If there are no updates, you should return the current json schema.
 
-Current collected json schema is:
+Current collected json object is(Feel free to update this information by return new PoliceCallInfo instance):
 {current_schema}
 
 The full conversation is as follows:
@@ -44,12 +44,12 @@ class CallMonitor:
     
     def __post_init__(self):
         self.client = AsyncClient(host='http://localhost:11434')
-        self.current_schema = self.response_model.model_json_schema()
+        self.current_schema = PoliceCallInfo().model_dump_json()
         
     async def run(self, message: str):
         prompt = PoliceCallPrompt.format(
             current_schema=self.current_schema,
-            conversation = message
+            conversation=message
         )
         
         response = await self.client.chat(
@@ -59,7 +59,7 @@ class CallMonitor:
             format=self.response_model.model_json_schema())
         
         instance = self.response_model(**json.loads(response.message.content))
-        self.current_schema = instance.model_json_schema()
+        self.current_schema = instance.model_dump_json()
         return instance
     
     async def analyze(self):

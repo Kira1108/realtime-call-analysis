@@ -18,10 +18,10 @@ from uuid import uuid4
 import websockets
 from pydantic import BaseModel, Field
 
-BASE_URL = "wss://asr.cloud.tencent.com/asr/v2/1259304765?"
-PART_URL = "asr.cloud.tencent.com/asr/v2/1259304765?"
-SECRET_KEY = ""
-SECRET_ID = ""
+BASE_URL = "wss://asr.cloud.tencent.com/asr/v2/yourappid?"
+PART_URL = "asr.cloud.tencent.com/asr/v2/yourappid?"
+SECRET_KEY = "your secret key"
+SECRET_ID = "your secret id"
 
 class TencentASRResponse(BaseModel):
     sentence:str = Field(..., description = "ASR recognition result")
